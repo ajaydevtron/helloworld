@@ -17,5 +17,5 @@ resource "random_id" "id" {
 }
 
 output "hello_world" {
-  value = "Hello World, ${var.subject} ${random_id.id.hex}!"
+  value = "Hello World Ajay, ${var.subject} ${random_id.id.hex}!"
 }
