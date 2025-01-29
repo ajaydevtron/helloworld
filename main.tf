@@ -1,21 +1,43 @@
-terraform {
-  required_version = ">= 1.3.9"
+provider "aws" {
+  region = "ap-south-1"  # Change to your desired AWS region
 }
 
-variable "subject" {
-   type = string
-   default = "World"
-   description = "Subject to hello"
-}
+resource "aws_security_group" "ajay_sg" {
+  name        = "ajay-sg"
+  description = "Security group allowing SSH and HTTP access"
 
-resource "random_id" "id" {
-  keepers = {
-    trigger = var.subject
+  # Inbound Rules
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]  # Allow SSH from anywhere (Change for security)
   }
 
-  byte_length = 4
-}
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]  # Allow HTTP from anywhere
+  }
 
-output "hello_world" {
-  value = "Hello World Ajay, ${var.subject} ${random_id.id.hex}!"
+  ingress {
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]  # Allow HTTPS from anywhere
+  }
+
+  # Outbound Rules (Allow all traffic)
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = "ajay-sg"
+    Env  = "dev"
+  }
 }
