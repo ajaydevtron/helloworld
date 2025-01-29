@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 resource "aws_security_group" "ajay_sg" {
-  name        = "ajay-sg"
+  name        = "terraform-sg"
   description = "Security group allowing SSH and HTTP access"
 
   # Inbound Rules
@@ -37,7 +37,7 @@ resource "aws_security_group" "ajay_sg" {
   }
 
   tags = {
-    Name = "ajay-sg"
+    Name = "terraform-sg"
     Env  = "dev"
   }
 }
