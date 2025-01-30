@@ -11,7 +11,7 @@ resource "aws_security_group" "ajay_sg" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["23.0.0.0/24"]  # Allow SSH from anywhere (Change for security)
+    cidr_blocks = ["23.0.0.0/32"]  # Allow SSH from anywhere (Change for security)
   }
 
   ingress {
