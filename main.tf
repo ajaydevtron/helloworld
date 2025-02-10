@@ -16,7 +16,7 @@ resource "aws_security_group" "ajay_sg" {
 
   ingress {
     from_port   = 80
-    to_port     = 82
+    to_port     = 83
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]  # Allow HTTP from anywhere
   }
