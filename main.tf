@@ -38,6 +38,6 @@ resource "aws_security_group" "ajay_sg" {
 
   tags = {
     Name = "terraform-sg"
-    Env  = "dev"
+    Env  = "dev-test"
   }
 }
